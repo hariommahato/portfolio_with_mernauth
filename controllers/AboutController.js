@@ -17,7 +17,6 @@ module.exports.saveAbout = async (req, res) => {
 
   try {
     await newAbout.save();
-t
     res.status(201).json(newAbout);
   } catch (error) {
     res.status(409).json({ message: error.message });
@@ -32,7 +31,7 @@ module.exports.updateAbout = async (req, res) => {
     return res.status(404).send(`No data  with id: ${id}`);
 
   const updatedAbout = { text, _id: id };
-
+  
   await AboutModel.findByIdAndUpdate(id, updatedAbout, { new: true });
 
   res.json(updatedAbout);

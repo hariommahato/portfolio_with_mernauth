@@ -3,12 +3,12 @@ const bodyParser=require('body-parser')
 const mongoose = require("mongoose");
 const path=require('path')
 require("dotenv").config();
-
+const cors = require('cors');   
 // const cors = require("cors");
 const app = express();
 
 
-
+app.use(cors());
 app.use(express.json());
 // app.use(cors());
 app.use(express.static(path.join(__dirname, '../frontend/public')));
@@ -48,8 +48,8 @@ app.use('/contact',contactroutes)
 app.use('/whatido',whatidoroutes)
 app.use('/about',aboutroutes)
 app.use('/project',projectroute)
-app.use("/api/users", userRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/users", userRoutes);
+app.use("/auth", authRoutes);
 const PORT =process.env.PORT || 3002
 
 if(process.env.NODE_ENV="production"){
